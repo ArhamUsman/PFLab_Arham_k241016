@@ -1,0 +1,9 @@
+Q. Implement an algorithm where the user enters a number, and an appropriate month is displayed.
+
+START 
+Ask the user to enter a number
+Create a list with index 1 To 12 and store their respective months in the list
+Check if the number entered is between 1 and 12 including.
+If it is, output the content of the list where index equals to the entered number
+Else output an error message
+END
