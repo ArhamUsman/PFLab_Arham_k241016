@@ -1,0 +1,9 @@
+Q.Take three variables as input and add them without using the + operator
+START
+INPUT num1
+INPUT num2
+INPUT num3
+total = (num1 * -1) - num2 - num3
+total = total * -1
+PRINT total 
+END
