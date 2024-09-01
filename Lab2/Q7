@@ -1,0 +1,19 @@
+Q. Implement an algorithm for making a simple calculator with all the operators (+,-,*,/,%)
+
+START
+Ask user to enter number1
+Ask user to enter operator
+Ask user to enter number2
+Check if operator is “+” 
+then output (number1 + number2)
+Check if operator is “-” 
+then output (number1 - number2)
+Check if operator is “*” 
+then output (number1 * number2)
+Check if operator is “/” 
+then output (number1 / number2)
+Check if operator is “%” 
+then output (number1 % number2)
+Else
+Output an error message
+END
