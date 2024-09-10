@@ -1,0 +1,24 @@
+/*
+Construct a C program where you calculate the slope of two point (5,4), (3,2). Use format specifiers to
+cap the result to 3 decimal places.
+*/
+
+#include<stdio.h>
+int main(){
+	int x1, x2, y1, y2;
+	float gradient;
+	
+	printf("Input x coordinate of point 1: ");
+	scanf("%d", &x1);
+	printf("Input y coordinate of point 1: ");
+	scanf("%d", &y1);
+	printf("Input x coordinate of point 2: ");
+	scanf("%d", &x2);
+	printf("Input y coordinate of point 2: ");
+	scanf("%d", &y2);
+
+	gradient = (y2-y1)/(x2-x1);
+	
+	printf("Slope of the two points is: %0.3f", gradient);
+	return 0;
+}
