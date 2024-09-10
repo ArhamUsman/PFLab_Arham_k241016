@@ -1,0 +1,19 @@
+/*
+Write a C program that takes two integer values as input from the user. Then swap the values taken
+from the user and display the output of the variables.
+*/
+
+#include <stdio.h>
+int main(){
+	int num1, num2;
+	printf("Input Number 1: ");
+	scanf("%d", &num1);
+	printf("Input Number 2: ");
+	scanf("%d", &num2);
+	printf("___________________\n");
+	num1 = num1 + num2;
+	num2 = num1 - num2;
+	num1 = num1 - num2;
+	printf("Number 1 is %d\n", num1);
+	printf("Number 2 is %d", num2);
+}
