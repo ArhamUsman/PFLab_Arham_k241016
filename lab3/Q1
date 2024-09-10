@@ -1,0 +1,11 @@
+// Question 1
+// Explain the output of this C program. Why the wrong value is being displayed in the output?
+
+#include <stdio.h>
+int main(){
+	int a = 3000000000;
+	printf("Number is %d", a);
+	// 3000000000 is too large to be stored in 4 bytes, instead double should be used
+	double b = 3000000000;
+	printf("\nUpdated number is: %0.0lf", b);
+}
