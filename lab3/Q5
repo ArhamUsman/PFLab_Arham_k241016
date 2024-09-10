@@ -1,0 +1,28 @@
+/*
+Construct a C program with the flowchart below. The input value of the principle must be between 100
+Rs. To 1,000,000 Rs. The Rate of interest must be between 5% to 10% and Time Period must be between
+1 to 10 years. Hint: these restrictions can be displayed in the form of message on the window.
+*/
+
+#include <stdio.h>
+int main(){
+	float p=0, r=0, simple_interest;
+	int t=0;
+	
+	while ((p<100) || (p>1000000)){
+		printf("Input the value of principle between 100 and 1000000: ");;
+		scanf("%f", &p);
+	}
+	while ((r<0.05) || (r>0.1)){
+		printf("Input the value of rate between 5 to 10 percent: " );
+		scanf("%f", &r);
+	}
+	while ((t<1) || (t>10)){
+		printf("Input the value of time between 1 and 10 years: ");;
+		scanf("%d", &t);
+	}
+	
+	simple_interest = p*r*t;
+	
+	printf("Simple interest calculated: %0.2f", simple_interest);
+}
