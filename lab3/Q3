@@ -1,0 +1,19 @@
+/*
+A customer asks the IT firm to develop a program in C language, which can take tax rate and salary from
+the user on runtime and then calculate the tax, the user has to pay and the salary he/she will have after
+paying the tax. This information is then provided to the user.
+*/
+
+#include <stdio.h>
+int main(){
+	float tax_rate, salary, tax;
+	printf("Enter tax rate: ");
+	scanf("%f", &tax_rate);
+	printf("Enter salary: ");
+	scanf("%f", &salary);
+	printf("___________________\n");
+	tax = tax_rate*salary;
+	salary -= tax;
+	printf("Tax you should pay: %0.2f\n", tax);
+	printf("Salary remaining: %0.2f", salary);
+}
