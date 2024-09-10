@@ -1,5 +1,5 @@
 // Question 1
-// Explain the output of this C program. Why the wrong value is being displayed in the output?
+// Explain the output of this C program. Why the wrong value is being displayed in the output? 
 
 #include <stdio.h>
 int main(){
