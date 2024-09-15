@@ -1,0 +1,63 @@
+/*
+Write a program in C to calculate and print the Electricity bill of a given customer. 
+The customer id., name and unit consumed by the user should be taken from the keyboard and display the total amount to pay to the customer. 
+The charges are as follow:
+Unit	Charge/Unit
+Up to 199	@16.20
+200 and above but less than 300	@20.10
+300 and above but less than 500	@27.10
+500 and above	@35.90
+If the bill exceeds Rs. 18000 then a surcharge of 15% will be charged on top of the bill.
+Test Input: 
+1001 //Customer ID
+James //Customer Name
+800 //Units Consumed
+
+Expected Output:
+Customer ID :1001 
+Customer Name: James 
+Units Consumed :800
+Amount Charges @Rs. 35.90 per unit: 28720 
+Surcharge Amount: 4308 
+Net Amount Paid by the Customer: 33028.00
+*/
+
+
+#include <stdio.h>
+int main(){
+	int id, unit;
+	char name[20];
+	float amount, surcharge=0.0;
+	printf("Customer ID :");
+	scanf("%d", &id);
+	printf("Customer Name: ");
+	scanf("%s", &name);
+	printf("Units Consumed: ");
+	scanf("%d", &unit);
+	printf("___________________________\n");
+	printf("Customer ID: %d\n", id);
+	printf("Customer Name: %s\n", name);
+	printf("Units consumed: %d\n", unit);
+	if (unit<=199){
+		amount = unit*16.2;
+		printf("Amount Charges @Rs. 16.20 per unit: %0.0f\n", amount);
+	}
+	else if (unit<300){
+		amount = unit*20.1;
+		printf("Amount Charges @Rs. 20.10 per unit: %0.0f\n", amount);
+	}
+	else if (unit<500){
+		amount = unit*27.1;
+		printf("Amount Charges @Rs. 27.10 per unit: %0.0f\n", amount);
+	}
+	else{
+		amount = unit*35.9;
+		printf("Amount Charges @Rs. 35.90 per unit: %0.0f\n", amount);
+	}
+	if (amount>18000){
+		surcharge = amount*0.15;
+	}
+	printf("Surcharge Amount: %0.0f\n", surcharge);
+	printf("Net Amount Paid by the Customer: %0.2f\n", amount+surcharge);
+	return 0;
+}
