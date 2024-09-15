@@ -1,0 +1,41 @@
+/*
+An online shopping store is providing discounts on the items due to the Eid. If
+the cost of items is less than 2000 it will give a discount up to 5%. If the cost of
+shopping is 2000 to 4000, a 10% discount will be applied. If the cost of
+shopping is 4000 to 6000, a 20% discount will be applied. If is more than 6000
+then a 35% discount will be applied to the cost of shopping. Print the actual
+amount, saved amount and the amount after discount. The Minimum amount
+eligible for a discount is 500.
+*/
+
+#include <stdio.h>
+int main(){
+	float cost, saved, pay;
+	printf("Enter the cost of the item: ");
+	scanf("%f", &cost);
+	if (cost<500){
+		saved = 0;
+		pay = cost;
+	}
+	else if (cost<2000){
+		saved = cost*0.05;
+		pay = cost - saved;
+	}
+	else if (cost<4000){
+		saved = cost*0.1;
+		pay = cost - saved;
+	}
+	else if (cost<6000){
+		saved = cost*0.2;
+		pay = cost - saved;
+	}
+	else{
+		saved = cost*0.35;
+		pay = cost - saved;
+	}
+	printf("Actual Amount: %0.2f\n", cost);
+	printf("Saved Amount: %0.2f\n", saved);
+	printf("Amount After Discount: %0.2f\n", pay);
+	return 0;
+}
+
