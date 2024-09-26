@@ -1,0 +1,20 @@
+/*
+The weekday is true if it is a weekday, and the vacation is true if we are on vacation. We sleep in if it is
+not a weekday or we're on vacation. Print true if we sleep in.
+*/
+#include <stdio.h>
+#include <string.h>
+int main(){
+	char weekday[6], vacation[6];
+	printf("Enter true if today is weekday, else enter false: ");
+	scanf("%s", weekday);
+	printf("Enter true if we are on vacation else enter true: ");
+	scanf("%s", vacation);
+	if (!(strcmp(weekday, "false")) || !(strcmp(vacation, "true"))){
+		printf("True");
+	}
+	else{
+		printf("False");
+	}
+	return 0;
+}
