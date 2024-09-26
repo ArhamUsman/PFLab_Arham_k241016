@@ -1,0 +1,16 @@
+#include <stdio.h>
+int main(){
+	int x;
+	x = 5 > 8 ? 10 : 1 != 2 < 5 ? 20 : 30;
+	printf("Value of x:%d", x);
+}
+
+/*
+Explain why the output is 30
+- The first expression evaluates to 0
+- The expression in false is evaluated on rule of precedence
+- 2<5 evaluate to 1
+- 1 != 1 evalute to 0
+- so 30 is stored in x
+*/
+
