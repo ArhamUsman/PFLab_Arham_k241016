@@ -1,0 +1,45 @@
+/*
+Write a program to control a coffee machine. Allow the user to input the type of coffee as B for Black
+and W for White. Ask the user if the cup size is double and if the coffee is manual. The following table
+details the time chart for the machine for each coffee type. Display a statement for each step. If the
+coffee size is double, increase the baking time by 50 percent. Use functions to display instructions to the
+user and to compute the coffee time.
+*/
+
+int main(){
+	float multiply=1.0, custom;
+	char type, size;
+	
+	printf("Enter b for black or w for white coffee:");
+	scanf(" %c", &type);
+	printf("Enter d for double or m for manual or any other key for normal size:");
+	scanf(" %c", &size);
+	
+	if (size == 'd'){
+		multiply = 1.5;
+	}
+	else if (size=='m'){
+		printf("Enter cup size in ml:");
+		scanf("%f", &custom);
+		multiply = (custom*0.75)/250;
+	}
+	
+	if (type == 'w'){
+		printf("Put sugar: %0.1f min\n", multiply*15);
+		printf("Put sugar: %0.1f min\n", multiply*15);
+		printf("Mix well: %0.1f min\n", multiply*20);
+		printf("Add coffee: %0.1f min \n", multiply*2);
+		printf("Add milk: %0.1f min \n", multiply*4);
+		printf("Mix well: %0.1f min \n", multiply*20);
+	}
+	else{
+		printf("Put sugar: %0.1f min\n", multiply*20);
+		printf("Put sugar: %0.1f min\n", multiply*20);
+		printf("Mix well: %0.1f min\n", multiply*25);
+		printf("Add coffee: %0.1f min \n", multiply*15);
+		printf("Mix well: %0.1f min \n", multiply*25);
+	}
+	
+	
+	return 0;
+}
