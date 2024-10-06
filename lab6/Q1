@@ -1,0 +1,25 @@
+/*
+1. Which loop system would be better for user input. 
+Justify your answer by creating a program that takes a value and adds it to a variable and 
+prints it repeatedly until the user enters a zero value.
+*/
+
+/*
+A do..while loop will be the best. 
+It is superior to for loop beacuse it will terminate only when 0 is input: A for loop will break if the count is completed. 
+It is superior to while loop because it check condition after the input: while loop check the condition before the input
+Hence, it is the best choice
+*/
+
+#include <stdio.h>
+int main(){
+	int i, variable=0;
+	do{
+		printf("Enter a number:");
+		scanf("%d", &i);
+		variable += i;
+		printf("Value in variable: %d\n", variable);
+	}while(i!=0);
+	printf("Data entered successfully");
+	return 0;
+}
