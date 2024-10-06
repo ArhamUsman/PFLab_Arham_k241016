@@ -1,0 +1,12 @@
+//Make the opposite pattern
+int main(){
+	int i;
+	do{
+		if (i!=0 && i!=5)
+			printf("* * * * *\n");
+		else
+			printf("*       *\n");
+			i++;
+	}while(i<=5);
+	return 0;
+}
