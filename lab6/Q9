@@ -1,0 +1,19 @@
+int main(){
+	int i, j=1, k=3, x;
+	printf("Whole glass is made at letters 5, 9, 13,..\n");
+	printf("Enter where to make the hour glass till (enter a character): ");
+	scanf("%d", &x);
+	for (i=1; i<=x; i++){
+		if (i==j){
+			printf("*****\n");
+			j+=4;
+		}
+		else if (i==k){
+			printf("  *\n");
+			k+=4;
+		}
+		else
+			printf(" * *\n");
+	}
+	return 0;
+}
