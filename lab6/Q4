@@ -1,0 +1,24 @@
+/*
+4. Write a program to check whether a number is an Armstrong number or not. 
+An Armstrong number is a number that is equal to the sum of cubes of its digits.
+*/
+
+#include <stdio.h>
+int main(){
+	int temp, input, digit, armstrong;
+	printf("Enter a number:");
+	scanf("%d", &input);
+	temp = input;
+	while (input>=1){
+		digit = input%10;
+		input /= 10;
+		armstrong += digit*digit*digit;
+	}
+	if (temp == armstrong){
+		printf("It is an armstrong number");
+	}
+	else{
+		printf("It is not an armstrong number");
+	}
+	return 0;
+}
