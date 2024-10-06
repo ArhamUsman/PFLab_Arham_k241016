@@ -1,0 +1,31 @@
+/*
+3. Using the above program integrate the number if it is a prime and print the Fibonacci series till that number.
+Example
+Input: 5 Output:
+Number is prime
+Series is = 0 1 1 2 3
+*/
+#include <stdio.h>
+int main(){
+	int input, count=1;
+	printf("Input a number:");
+	scanf("%d", &input);
+	if (input<1){
+		printf("ERROR");
+		return 0;
+	}
+	for (count=2; count<input; count++)
+		if (input%count==0){
+			printf("Number is not prime\n"); 
+			return 0;
+		}
+	printf("Number is prime\nSeries = ");
+	int temp=0, curr=0, prev=1;
+	for (count=0; count<input; count++){
+		printf("%d ", curr);
+		temp = curr;
+		curr += prev;
+		prev = temp;
+	}
+	return 0;
+}
