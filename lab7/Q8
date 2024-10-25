@@ -1,0 +1,36 @@
+Q8
+#include <stdio.h>
+
+int strToInt(char *arr){
+	int index=0, num=0;
+	char digit=arr[index];
+	while (digit>='0' && digit <='9'){
+		int x=digit-'0';
+		num=num*10+x;
+		index++;
+		digit=arr[index];
+		}
+	return num;
+}
+
+int main(){
+	char equation[20], *ptr=equation;
+	int i;
+	printf("Enter equation:");
+	scanf("%s", equation);
+	printf("%s\n", equation);
+	while (*ptr!='\0'){
+		if (ptr==equation){
+			i=strToInt(ptr);
+		}
+		if (*ptr=='+'){
+			i +=strToInt(ptr+1);
+		}
+		if (*ptr=='-'){
+			i-=strToInt(ptr+1);
+		}
+		ptr++;
+	}
+	printf("Result: %d",i);
+	return 0;
+}
