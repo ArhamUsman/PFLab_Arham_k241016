@@ -1,0 +1,42 @@
+//Q6
+#include <stdio.h>
+int check(int *a, int size, int val, int index){
+	if (index==size) return 0;
+	if (a[index]==val) return 1;
+	return check(a, size, val, index+1);
+}
+
+
+int main(){
+    int index=0, arr[10], x=0, y, flag=0;
+    int done[10]={0}, id=0;
+    
+	for (index=0; index<10; index++){
+        printf("Element %d=", index+1);
+        scanf("%d", &arr[index]);
+    }
+    
+    y=-1;
+    
+    for (index=0; index<=100; index++){
+        if (index%10==0 && y!=-1){
+            printf("check %d\n", check(done, 10, x, 0));
+            if (check(done, 10, x, 0)){
+            	index +=10;	
+				printf("skip\n");
+			}
+			else{
+				printf("Number %d occur %d times\n", arr[x], flag);
+            	id++;
+				printf("add in done  %d\n,", done[id-1]);
+			}
+			x++,
+            flag=0;
+            y=-1;
+        }
+        y++;
+        if (arr[x]==arr[y]){
+            flag++;
+        }
+    }
+}
