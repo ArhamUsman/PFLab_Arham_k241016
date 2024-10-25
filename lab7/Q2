@@ -1,0 +1,21 @@
+//Q2
+#include <stdio.h>
+int main(){
+	char check[20], character;
+	int a=0, e=0, i=0, o=0, u=0, index=0;
+	printf("Enter the string:");
+	gets(check);
+	character=check[index];
+	while (character!='\0'){
+		switch (character){
+			case 'a': a++; break;
+			case 'e': e++; break;
+			case 'i': i++; break;
+			case 'o': o++; break;
+			case 'u': u++; break;
+		}
+		index++;
+		character=check[index];		
+	}
+	printf("a=%d, e=%d, i=%d, o=%d, u=%d", a, e, i, o, u);
+}
