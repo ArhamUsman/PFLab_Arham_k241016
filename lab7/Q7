@@ -1,0 +1,38 @@
+//Q7
+#include <stdio.h>
+int main(){
+    int index=0, arr[100], size, x, y, flag=0;
+    printf("Array Size=");
+    scanf("%d", &size);
+    for (index=0; index<size; index++){
+        printf("Element %d=", index+1);
+        scanf("%d", &arr[index]);
+    }
+    /*
+    for (x=0; x<size; x++){
+        for (y=x+1; y<size; y++){
+            if (arr[x]==arr[y]){
+               flag=1;
+               break;
+            }
+        }
+        if (flag) break;
+    }
+    */
+    y=-1;
+    for (index=0; index<size*size; index++){
+        if (index%size==0){
+            x++;
+            y=-1;
+        }
+        y++;
+        if (arr[x]==arr[y]){
+            flag=1;
+            break;
+        }
+    }
+    
+    
+    if (flag) printf("Number %d occur more than once", arr[x]);
+    else printf("All values are unique");
+}
