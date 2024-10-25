@@ -1,0 +1,38 @@
+//Q1
+#include <stdio.h>
+void array(int *a, char op, int size){
+	int i;
+	for (i=0; i<size; i++){
+		switch(op){
+			case 'i':
+				printf("Enter array element %d:", i+1);
+				scanf("%d", a);
+				break;
+			case 'p':
+				printf("%d, ", *a);
+		}
+		a++;
+	}
+	printf("\n");
+}
+
+
+int main(){
+	int i, arr[6];
+	
+	array(arr, 'i', 6);
+	
+	int temp=arr[5];
+	
+	printf("Array before shifting:\n");
+	array(arr, 'p', 6);
+		
+	for (i=5; i>=0; i--){
+		arr[i]=arr[i-1];
+	}
+	arr[0]=temp;
+	
+	printf("Array after shifting:\n");
+	array(arr, 'p', 6);
+	
+}
