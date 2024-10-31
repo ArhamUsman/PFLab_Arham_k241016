@@ -1,0 +1,38 @@
+#include <stdio.h>
+
+void sort(char arr[][20], int size){
+	int i, j;
+	char c[20];
+	for (i=0; i<size; i++){
+		for (j=0; j<size; j++){
+			if (arr[j][0]>arr[i][0]){
+				strcpy(c, arr[i]);
+				strcpy(arr[i], arr[j]);
+				strcpy(arr[j], c);
+			}
+		}
+	}
+}
+
+void print(char arr[][20], int size){
+	int i;
+	printf("{");
+	for (i=0; i<size; i++){
+		(i==0)?printf("%s", arr[i]):printf(",%s", arr[i]);
+	}
+	printf("}\n");
+}
+
+int main(){
+	int size;
+	printf("Enter size of array:");
+	scanf("%d", &size);
+	char arr[size][20];
+	int i;
+	for (i=0; i<size; i++){
+		printf("Enter word:");
+		scanf("%s", &arr[i]);
+	}
+	sort(arr, size);
+	print(arr, size);
+}
