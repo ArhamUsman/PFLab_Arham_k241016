@@ -1,0 +1,50 @@
+#include <stdio.h>
+int main(){
+	int i, x, y, z;
+	int row, column;
+	printf("Enter number of columns:");
+	scanf("%d", &column);
+	printf("Enter number of rows(in whole number):");
+	scanf("%d", &row);
+	for (i=0; i<row; i++){
+		for (x=0; x<5; x++){
+			for (y=0; y<column; y++){
+				for (z=0; z<13; z++){
+					switch (x%5){
+						case 0: (z==6)?printf("*"):printf(" ");break;
+						case 1:
+							if (z==4 || z==8){
+								printf("*");
+							} 
+							else{
+								printf(" ");
+							}break;
+						case 2:
+							if (z==2 || z==10){
+								printf("*");
+							}
+							else{
+								printf(" ");
+							}break;
+						case 3:
+							if (z==1||z==11){
+								printf("*");
+							}
+							else{
+								printf(" ");
+							}break;
+						case 4:
+							if (z==0||z==12){
+								printf("*");
+							}
+							else{
+								printf(" ");
+							}break;
+					}
+				}
+			}
+			printf("\n");
+		}
+		
+	}
+}
