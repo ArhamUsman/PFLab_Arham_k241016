@@ -1,0 +1,48 @@
+#include <stdio.h>
+int main(){
+	int mat1[3][3], mat2[3][3], res[3][3]={0}, r=0, i, j, k;
+	
+	printf("Enter values for Matrix A:\n");
+	for (i=0; i<3; i++){
+		for (j=0; j<3; j++){
+			printf("Enter value at row %d column %d:", i, j);
+			scanf("%d", &mat1[i][j]);
+		}
+	}
+	
+	printf("\nEnter values for matrix B:\n");
+	for (i=0; i<3; i++){
+		for (j=0; j<3; j++){
+			printf("Enter value at row %d column %d:", i, j);
+			scanf("%d", &mat2[i][j]);
+		}
+	}
+	
+	for (i=0; i<3; i++){
+		for (j=0; j<3; j++){
+			for (k=0; k<3; k++){
+				r += mat1[i][k]*mat2[k][j];
+			}
+			res[i][j]=r;
+			r=0;
+		}
+	}
+	
+	printf("\nMultiply matA x matB:\n");
+	for (i=0; i<3; i++){
+		for (j=0; j<3; j++){
+			printf("%d\t", res[i][j]);
+		}
+		printf("\n");
+	}
+	
+
+	printf("\nSubtract ((matA x matB)-matA):\n");
+	for (i=0; i<3; i++){
+		for (j=0; j<3; j++){
+			printf("%d\t", res[i][j]-mat1[i][j]);
+		}
+		printf("\n");
+	}
+	
+}
