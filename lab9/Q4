@@ -1,0 +1,27 @@
+#include <stdio.h>
+int calculate(int a, int b, char c){
+	switch (c){
+		case '+':return a+b; break;
+		case '-':return a-b; break;
+		case '*':return a*b; break;
+		case '/':return a/b; break;
+		default: printf("Error\n");
+	}
+}
+
+int main(){
+	int a, b;
+	char c;
+	printf("Enter num1:");
+	scanf("%d", &a);
+	printf("Enter num2:");
+	scanf("%d", &b);
+	int flag=1;
+	do{
+		printf("Enter a valid operator(+, -, *, /):");
+		fflush(stdin);
+		scanf("%c", &c);
+		if (c=='+'||c=='-'||c=='*'||c=='/') flag=0;
+	}while(flag);
+	printf("%d %c %d = %d", a, c, b, calculate(a, b, c));
+}
