@@ -1,0 +1,17 @@
+#include<stdio.h>
+
+void swapIntegers(int *a, int *b){
+	int temp=*a;
+	*a=*b;
+	*b=temp;
+	printf("Updated values:\na:%d\nb:%d", *a, *b);	
+}
+
+int main(){
+	int i, a[2];
+	for (i=0; i<2; i++){
+		printf("Enter an integer:");
+		scanf("%d", &a[i]);
+	}
+	swapIntegers(&a[0], &a[1]);
+}
