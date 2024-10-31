@@ -1,0 +1,32 @@
+#include <stdio.h>
+int main(){
+	int saddle[3]={-1, -1, -1}, i, j, k;
+	int arr[3][3];
+	int sr[3], lc[3];
+	
+	for (i=0; i<3; i++){
+		for (j=0; j<3; j++){
+			printf("Enter value at row %d column %d:", i, j);
+			scanf("%d", &arr[i][j]);
+		}
+	}
+	
+	for (i=0; i<3; i++){
+		j=0;
+		sr[i]=arr[i][j];
+		lc[i]=arr[j][i];
+		for (j=0; j<3; j++){
+			if (sr[i]>arr[i][j]) sr[i]=arr[i][j];
+			if (lc[i]<arr[j][i]) lc[i]=arr[j][i];
+		}
+	}
+	
+	for (i=0; i<3; i++){
+		for (j=0; j<3; j++){
+			if (arr[i][j]==sr[i] && arr[i][j]==lc[j]) printf("%d is a saddle point at row %d column %d\n", arr[i][j], i, j); 
+		}
+	}
+	
+	return 0;
+}
+
