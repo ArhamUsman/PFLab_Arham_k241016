@@ -1,0 +1,20 @@
+#include <stdio.h>
+int prime(int a){
+	int i;
+	for (i=2; i<a; i++){
+		if (a%i==0) return 0;
+	}
+	return 1;
+}
+
+int main(){
+	int num;
+	while(1){
+		printf("Enter a number(<=0 to exit):");
+		scanf("%d", &num);
+		if (num<=0) { printf("\n_________EXITING________");
+		}break;
+		if (prime(num)) printf("Prime\n");
+		else printf("Not Prime\n");
+	}
+}
