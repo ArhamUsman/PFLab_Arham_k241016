@@ -1,0 +1,24 @@
+#include <stdio.h>
+#include <string.h>
+
+char* rev(char *a){
+	char temp[strlen(a)+1], reverse[strlen(a)+1];
+	strcpy(temp, a);
+	int i, j=strlen(a)-1;
+	for (i=0; i<strlen(a); i++){
+		reverse[i]=temp[j];
+		j--;
+	}
+	reverse[i]='\0';
+	return reverse;
+}
+
+
+int main(){
+	char str[30], reverse[30];
+	char *reve=reverse;
+	printf("Enter the string:");
+	scanf("%s", str);
+	reve=rev(str);
+	printf("reversed string: %s", reve);
+}
