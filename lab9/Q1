@@ -1,0 +1,24 @@
+#include <stdio.h>
+#include <string.h>
+
+void palindrome(char string[][20], int size){
+	int i;
+	for (i=0; i<size; i++){
+		if (strlwr(string[i])==strlwr(strrev(string[i]))) printf("%s is a palindrome\n", string[i]);
+		else printf("%s is not a palindrome\n", string[i]);
+	}
+}
+
+int main(){
+	int i, size;
+	printf("Enter number of strings:");
+	scanf("%d", &size);
+	
+	char strr[size][20];
+	for (i=0; i<size; i++){
+		printf("Enter string:");
+		scanf("%s", strr[i]);
+	}
+	
+	palindrome(strr, size);
+}
