@@ -1,0 +1,39 @@
+#include <stdio.h>
+
+max_min(int *arr, char m, int size){
+	int i=0;
+	int j=0;
+	int temp[size];
+	for (i=0; i<size; i++){
+		temp[i]=arr[i];
+	}
+	
+	for (i=0; i<size; i++){
+		for (j=i; j<size; j++){
+			if (temp[i]>temp[j]){
+				int z=temp[i];
+				temp[i]=temp[j];
+				temp[j]=z;
+			}
+		}
+	}
+	
+	switch(m){
+		case 'm': return temp[0];
+		case 'x': return temp[size-1];
+	}
+}
+
+
+int main(){
+	int size;
+	printf("Enter size of array:");
+	scanf("%d", &size);
+	int i, arr[size];
+	for (i=0; i<size; i++){
+		printf("Enter number:");
+		scanf("%d", &arr[i]);
+	}
+	printf("Maximum: %d\nMinimum: %d", max_min(arr, 'x', size), max_min(arr, 'm', size));
+	
+}
