@@ -1,0 +1,28 @@
+/*
+Create a program with a constant that defines the maximum allowable temperature (in
+Celsius). Write a function to compare input temperatures and use a static variable to
+count how many times temperatures exceeded the limit.
+*/
+
+#include <stdio.h>
+const float max=40;
+void cmp(int *c){
+	float temp;
+	printf("Enter temperature in celcius: ");
+	scanf("%f", &temp);
+	if (temp>max){
+		*c+=1;
+	}
+	printf("Type 1 to continue, Type 2 to exit: ");
+	int choice;
+	scanf("%d", &choice);
+	if (choice!=2){
+		cmp(c);
+	}
+}
+
+int main(){
+	int c=0, ptr=&c;
+	cmp(c);
+	printf("\nTemperature has exceeded the limit %d times", c);
+}
