@@ -1,0 +1,177 @@
+/*
+Defne a date structure with variables day, month and year. Write functions to
+1. Calculate the number of days between two days.
+2. Find the day of the week for a given date
+3. Check if a date is valid accounting for leap years.
+*/
+
+#include <stdio.h>
+
+struct date {
+    int day;
+    int month;
+    int year;
+};
+
+int leap_year(const struct date d1) {
+    if((d1.year%4==0 && d1.year%100!=0)|| (d1.year%400==0)) {
+        return 1;
+    }
+    return 0;
+}
+
+int monthDay(const struct date d1) {
+    int days[]={31,28,31,30,31,30,31,31,30,31,30,31};
+    if(leap_year(d1)) {
+        days[1]=29;
+    }
+    return days[d1.month-1];
+}
+
+struct date max(struct date d1, struct date d2) {
+    if (d1.year > d2.year) return d1;
+    if (d1.year < d2.year) return d2;
+    if (d1.month>d2.month) return d1;
+    if (d1.month<d2.month) return d2;
+    if (d1.day>d2.day) return d1;
+    if (d1.day<d2.day) return d2;
+    return d1;
+}
+
+struct date min(struct date d1, struct date d2) {
+    if (d1.year < d2.year) return d1;
+    if (d1.year > d2.year) return d2;
+    if (d1.month < d2.month) return d1;
+    if (d1.month > d2.month) return d2;
+    if (d1.day < d2.day) return d1;
+    if (d1.day > d2.day) return d2;
+    return d1;
+}
+
+int numberOfDays(struct date d1, struct date d2, int days, int flag_y, int flag_m) {
+    if (flag_y==0) {
+        int temp=d2.year-d1.year;
+        if (d2.month<d1.month) {
+            temp -= 1;
+        }
+        flag_y=1;
+        days=temp*365;
+        while (temp>0) {
+            if (leap_year(d2)) {
+                days++; temp-=4; continue;
+            }
+            temp--;
+            d2.year--;
+        }
+        return numberOfDays(d1, d2, days,flag_y, flag_m);
+    }
+    if (flag_y==1 && flag_m==0) {
+        if (d2.month>d1.month) {
+            while (d2.month>d1.month) {
+                days += monthDay(d2);
+                d2.month--;
+            }
+        }
+        else if (d2.month<d1.month) {
+            if (days>0) days -= 365;
+            while (d2.month!=d1.month) {
+                if (d2.month==1) d2.month=12;
+                else d2.month--;
+                days+=monthDay(d2);
+            }
+        }
+        flag_m=1;
+        return numberOfDays(d1, d2, days,flag_y, flag_m);
+    }
+    days += d2.day-d1.day;
+    return days;
+}
+
+int day_of_week(struct date d) {
+    int m=d.month;
+    if (m==1||m==2) {
+        d.year-=1;
+        m+=12;
+    }
+    int q=d.day, k=d.year%100, j=d.year/100;
+    int a=(13*(m+1))/5, b=k/4, c=j/4, e=q+a+k+b+c-2*j, h=e%7;
+    return h;
+}
+
+int valid_date(struct date d) {
+    if (d.month<=0 || d.month>12 || d.year<1582 || d.year>3000) return 0;
+    const int max_day=monthDay(d);
+    if (d.day>max_day || d.day<=0) return 0;
+    return 1;
+}
+
+struct date input_date(void) {
+    struct date d;
+    while (1) {
+        printf("Please enter a date format (dd/mm/yyyy):");
+        scanf("%d/%d/%d", &d.day, &d.month, &d.year);
+        if (valid_date(d)) {
+            return d;
+        }
+        printf("Invalid date\n");
+    }
+}
+
+int main() {
+    struct date d1, d2;
+    int choice;
+    while (1) {
+        printf("Menu:\n");
+        printf("Type 1 to calculate number of days between two days:\n");
+        printf("Type 2 to find the day of the week for the given date\n");
+        printf("Type 3 to check if the date is valid accounting for leap years\n");
+        printf("Type 0 to exit the program\nEnter your choice:");
+        scanf("%d", &choice);
+        printf("__________________\n");
+        fflush(stdin);
+        if (choice == 0) {
+            printf("End\n");
+            break;
+        }
+        switch (choice) {
+            case 1:
+                printf("Enter date 1:\n");
+                d1=input_date();
+                printf("Enter date 2:\n");
+                d2=input_date();
+                struct date dmax=max(d1,d2), dmin=min(d1,d2);
+                printf("Number of days = %d\n", numberOfDays(dmin, dmax, 0, 0, 0));
+                break;
+            case 2:
+                d1=input_date();
+                int day=day_of_week(d1);
+                switch (day) {
+                    case 0:
+                        printf("Saturday\n"); break;
+                    case 1:
+                        printf("Sunday\n"); break;
+                    case 2:
+                        printf("Monday\n"); break;
+                    case 3:
+                        printf("Tuesday\n"); break;
+                    case 4:
+                        printf("Wednesday\n"); break;
+                    case 5:
+                        printf("Thursday\n"); break;
+                    case 6:
+                        printf("Friday\n"); break;
+                    default:
+                        printf("Error\n");
+                }
+                break;
+            case 3:
+                d1=input_date();
+                printf("The date is valid accounting for leap years\n");
+                break;
+            default:
+                printf("Invalid Choice\n");
+        }
+        printf("__________________\n");
+    }
+    return 0;
+}
