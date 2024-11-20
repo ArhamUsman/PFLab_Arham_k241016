@@ -1,0 +1,37 @@
+/*
+Design a structure to store information about travel packages, including package name,
+destination, duration, cost, and number of seats available. Write a program that allows
+users to book a travel package and display available packages.
+*/
+
+#include <stdio.h>
+#include <string.h>
+typedef struct travel{
+    char name[20], destination[20];
+    int duration, cost, seatNo;
+};
+
+int main(){
+	struct travel package[5] = {
+		{"Karachi", "Islamabad", 5, 3000, 20},
+		{"Islamabad", "Karachi", 5, 3000, 20},
+		{"Canada", "Islamabad", 15, 390000, 20},
+		{"Islamabad", "Malaysia", 7, 300000, 20},
+		{"Karachi", "Dubai", 3, 230000, 20}
+	};
+	int i;
+	for (i=0; i<5; i++){
+		if (package[i].seatNo>0){
+			printf("Package %d:\nName: %s\nDestination:%s\n___________\n", i+1, package[i].name, package[i].destination);
+		}
+	}
+	int c=0;
+	while (c<1 || c>5){
+		printf("Which package do you want to book (1-5): ");
+		scanf("%d", &c);
+	}
+	package[c-1].seatNo--;
+	printf("Your Package is booked successfully! \n___________\nPackage Details:\n");
+	printf("Package %d:\nName: %s\nDestination:%s\n___________\n", c, package[c-1].name, package[c-1].destination);
+	printf("Billed Amount: %d\n", package[c-1].cost);	
+}
