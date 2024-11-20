@@ -1,0 +1,46 @@
+/*
+Define a structure to represent a point in 2D space with x and y coordinates. Implement
+functions to calculate the distance between two points and to check if a point lies within
+a specific rectangular boundary.
+*/
+
+#include <stdio.h>
+#include <math.h>
+typedef struct cordinate_2D{
+    int x, y;
+};
+
+float dist(struct cordinate_2D P1, struct cordinate_2D P2){
+    float distance = sqrt(pow(P1.x-P2.x, 2)+pow(P1.y-P2.y, 2));
+    if (distance<0){
+        distance=0-distance;
+    }
+    return distance;
+}
+
+void check(struct cordinate_2D P, int x, int y){
+	if (P.x>=0 && P.y>=0 && P.x<=x && P.y<=y){
+		printf("Yes! The point (%d, %d) lie inside the rectangle\n", P.x, P.y);
+	}
+	else{
+		printf("No! The point (%d, %d) doesn't lie inside the rectangle\n", P.x, P.y);
+	}
+}
+
+int main(){
+    struct cordinate_2D points[2];
+    int i, width, height;
+    for (i=0; i<2; i++){
+        printf("Enter x co-ordinate of Point %d: ", i+1);
+        scanf("%d", &points[i].x);
+        printf("Enter y co-ordinate of Point %d: ", i+1);
+        scanf("%d", &points[i].y);        
+    }
+    printf("distance: %0.2f unit\n", dist(points[0], points[1]));
+    printf("Enter height of rectangle: ");
+    scanf("%d", &height);
+    printf("Enter width of rectangle: ");
+    scanf("%d", &width);
+    check(points[0], width, height);
+    check(points[1], width, height);
+}
