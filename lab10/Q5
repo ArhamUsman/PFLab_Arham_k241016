@@ -1,0 +1,38 @@
+/*
+Write a recursive function bubbleSort that takes an array and its size. It performs the
+bubble sort algorithm by repeatedly comparing adjacent elements and swapping them if
+they are in the wrong order.
+*/
+
+#include <stdio.h>
+int display(int a[], int size){
+    if (size>0){
+        printf("%d ", *a);
+        a++;
+        size--;
+        display(a, size);
+    }
+}
+
+int bubbleSort(int a[], int size){
+    int i=0;
+    int flag=1;
+    while (flag==1 && i<size-1){
+        if (a[i]>a[i+1]){
+            int temp=a[i+1];
+            a[i+1]=a[i];
+            a[i]=temp;
+            flag=0;
+            bubbleSort(a, size);
+        }
+        i++;
+    }
+}
+
+int main(){
+    int arr[5]={5, 4, 3, 2, 1};
+    display(arr, 5);
+    printf("\n");
+    bubbleSort(arr, 5);
+    display(arr, 5);
+}
