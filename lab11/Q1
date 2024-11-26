@@ -1,0 +1,41 @@
+/*
+Write a program to copy the contents of one file to another. (Create a File with some
+dummy data, The data is not required to be formatted)
+*/
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+
+//create a dummy file
+void dummy(char name[]){
+	srand(time(NULL));
+	FILE *ptr;
+	ptr=fopen(name, "w");
+	int i, num;
+	for (i=0; i<100; i++){
+		num=rand()%100;
+		fprintf(ptr, "%d\n", num);
+	}
+	fclose(ptr);
+}
+
+//copy the file to another file
+int copy(char name1[], char name2[]){
+	FILE *pt1, *pt2;
+	pt1=fopen(name1, "r");
+	pt2=fopen(name2, "a");
+	if (pt1==NULL || pt2==NULL) return 0;
+	char c;
+	while ((c=fgetc(pt1))!=EOF){
+		fprintf(pt2, "%c", c);
+	}
+	fclose(pt1);
+	fclose(pt2);
+}
+
+int main(){
+	char n1[]="Original.txt", n2[]="Copied.txt";
+	dummy(n1);
+	copy(n1, n2);
+}
