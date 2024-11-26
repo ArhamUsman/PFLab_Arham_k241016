@@ -1,0 +1,42 @@
+/*
+Define a structure Company with fields 
+ - name, 
+ - year_established, 
+ - and an array departments containing the names of up to 5 departments. 
+Write a program to display company details including all departments.
+*/
+
+#include <stdio.h>
+#include <string.h>
+
+struct Company{
+	char name[20];
+	int year_established;
+	char departments[5][100];
+};
+
+void initialise(struct Company *c){
+	int i;
+	for (i=0; i<5; i++){
+		strcpy(c->departments[i], " ");
+	}
+}
+
+void display_company_details(struct Company *c){
+	printf("----------\nName: %s\nYear Established: %d\n", c->name, c->year_established);
+	int i=0;
+	for (i=0; i<5 && (strcmp(c->departments[i], " ")!=0); i++){
+		printf("Department %d: %s\n", i+1, c->departments[i]);
+	}
+}
+
+int main(){
+	struct Company c;
+	initialise(&c);
+	strcpy(c.name,"Arham Co-oprations");
+	c.year_established=2020;
+	strcpy(c.departments[0], "Cars");
+	strcpy(c.departments[1], "Real Estate");
+	strcpy(c.departments[2], "Furnitures");
+	display_company_details(&c);
+}
