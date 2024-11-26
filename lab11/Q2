@@ -1,0 +1,53 @@
+/*
+How would you implement a program to count the occurrences of each word in a text
+file? Write the approach and code.
+*/
+
+/*
+Read all the file and store it in a character array.
+Seperate each word and compare it with given word.
+If the word matches, increment the counter.
+return the counter.
+*/
+
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+
+//count function
+int count(char name[], char word[]){
+	FILE *ptr=fopen(name, "r");
+	if (ptr==NULL){
+		printf("\nUnable to open file\n");
+		return 0;
+	}
+	char c; int len=1;
+	while ((c=fgetc(ptr))!=EOF) len++;
+	char a[len+1];
+	fseek(ptr, 0, SEEK_SET);
+	len=0;
+	while ((c=fgetc(ptr))!=EOF){
+		a[len]=c;
+		len++;
+	}
+	char *w;
+	int count=0;
+	w=strtok(a, " ,;.\n!");
+	while (w != NULL){
+		if (strcmp(w, word)==0) count++;
+		w=strtok(NULL, " !,;.\n"); 
+	}
+	return count;
+}
+
+int main(){
+	FILE *ptr;
+	ptr=fopen("Miscelleneous.txt", "w");
+	fprintf(ptr, "Hello! My name is Arham.");
+	fclose(ptr);
+	char w[20];
+	printf("Enter word to search:");
+	scanf("%s", w);
+	printf("%s has occured %d times.", w, count("Miscelleneous.txt", w));
+	return 0;
+}
