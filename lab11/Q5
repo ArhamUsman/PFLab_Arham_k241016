@@ -1,0 +1,27 @@
+/*
+Define a structure Date with fields day, month, and year. 
+Create another structure Event with fields event_name, 
+date (nested Date structure), and location. 
+Write a program to display all event details in a readable format.
+*/
+
+struct Date{
+	int day, month, year;
+};
+
+struct Event{
+	char event_name[100];
+	struct Date date;
+	char location[100];
+};
+
+void display(struct Event *e){
+	printf("----------\nEvent Name: %s\nDate(dd/mm/yyyy): %d/%d/%d\nLocation: %s\n----------\n", e->event_name, e->date.day, e->date.month, e->date.year, e->location);
+}
+
+#include <stdio.h>
+int main(){
+	struct Date d={12, 07, 2028};
+	struct Event e1={"ACM Coder's Cup Final", d, "Fast Nuces Karachi"};
+	display(&e1);
+}
