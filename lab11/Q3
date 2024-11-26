@@ -1,0 +1,78 @@
+/*
+Create a function to replace a word in a file with another word.
+Read the file into memory, perform a search and replace, and write the modified
+content back to the file.
+*/
+
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+
+//count function
+int count(char name[], char word[], char replace[]){
+	FILE *ptr=fopen(name, "r");
+	if (ptr==NULL){
+		printf("\nUnable to open file\n");
+		return 0;
+	}
+	char c; int len=1;
+	while ((c=fgetc(ptr))!=EOF) len++;
+	char a[len+1], b[len+1];
+	fseek(ptr, 0, SEEK_SET);
+	len=0;
+	while ((c=fgetc(ptr))!=EOF){
+		a[len]=c;
+		len++;
+	}
+	fclose(ptr);
+	strcpy(b, a);
+	printf("B: %s\n", b);
+	ptr=fopen(name, "w");
+	char *w;
+	int count=0, index=0, length=0;
+	w=strtok(a, " ,;.\n!");
+	length=strlen(w);
+	index+=length;
+	while (w != NULL){
+		if (strcmp(w, word)==0){
+		    fprintf(ptr, "%s", replace);
+		    printf("Replaced: %s\n", replace);
+		    count++;
+		}
+		else{
+		    fprintf(ptr, "%s", w);
+		    //printf("Original: %s\n", w);
+		}
+		while (b[index]==' '|| b[index]=='!' || b[index]==',' || b[index]==';' || b[index]=='.' || b[index]=='\n'){
+			fprintf(ptr, "%c", b[index]);
+			index++;
+		}
+		//printf("char=%c, length=%d, index=%d\n", b[index], length, index);
+		w=strtok(NULL, " !,;.\n");
+		if (w!=NULL){
+			length=strlen(w);
+		    index+=length;	
+		} 
+	}
+	fprintf(ptr, '\0');
+	fclose(ptr);
+	return count;
+}
+
+int main(){
+	FILE *ptr;
+	ptr=fopen("task3.txt", "w");
+	fprintf(ptr, "Hello! My name is Arham.");
+	fclose(ptr);
+	char w[20];
+	printf("Enter word to search:");
+	scanf("%s", w);
+	printf("Enter word to replace:");
+	char w1[20];
+	scanf("%s", w1);
+	
+	if (count("task3.txt", w, w1))
+	    printf("Replaced successfully");
+	else
+	    printf("Word not found");
+}
