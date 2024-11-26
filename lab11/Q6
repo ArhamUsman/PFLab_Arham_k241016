@@ -1,0 +1,85 @@
+/*
+Define a structure Employee with fields 
+ - name
+ - id
+ - salary
+ - Address (fields: city and zip_code). 
+Write a program to 
+ - input details for multiple employees,
+ - store them in a file, 
+ - and read them back to display.
+*/
+#include <stdio.h>
+
+
+struct Address{
+	char city[50];
+	char zip_code[12]; //stored in char for efficient storage utilisation i.e only 12 bits are occupied.
+};
+
+struct Employee{
+	char name[20];
+	char id[10];
+	int salary;
+	struct Address address;
+};
+
+void input_details(char name[20]){
+	FILE *ptr=fopen(name, "ab");
+	if (ptr==NULL){
+		printf("Unable to open file!\n");
+		return;
+	}
+	struct Employee e;
+	fflush(stdin);
+	printf("Enter name:");
+	fgets(e.name, 20, stdin);
+	fflush(stdin);
+	printf("Enter id:");
+	fgets(e.id, 10, stdin);
+	fflush(stdin);
+	printf("Enter salary:");
+	scanf("%d", &e.salary);
+	fflush(stdin);
+	printf("Enter city:");
+	fgets(e.address.city, 50, stdin);
+	fflush(stdin);
+	printf("Enter zip code:");
+	fgets(e.address.zip_code, 12, stdin);
+	fflush(stdin);
+	e.id[strcspn(e.id, "\n")]='\0';
+	e.name[strcspn(e.name, "\n")]='\0';
+	e.address.city[strcspn(e.address.city, "\n")]='\0';
+	e.address.zip_code[strcspn(e.address.zip_code, "\n")]='\0';
+	fwrite(&e, sizeof(struct Employee), 1, ptr);
+	fclose(ptr);
+}
+
+
+void display_details(char name[20]){
+	FILE *ptr=fopen(name, "rb");
+	if (ptr==NULL){
+		printf("Unable to open file!\n");
+		return;
+	}
+	struct Employee e; int count=1;
+	while ((fread(&e, sizeof(struct Employee), 1, ptr))!=NULL){
+		printf("-------------\n");
+		printf("Name: %s\nId: %s\nSalary: %d\nCity: %s\nZip Code: %s\n", e.name, e.id, e.salary, e.address.city, e.address.zip_code);
+	}
+	fclose(ptr);
+}
+
+
+int main(){
+	int number, i;
+	printf("Enter the number of employees:");
+	scanf("%d", &number);
+	struct Employee e[number];
+	FILE *ptr=fopen("EmployeeDetails.bin", "wb");
+	fclose(ptr);
+	for (i=0; i<number; i++){
+		input_details("EmployeeDetails.bin");
+	}
+	display_details("EmployeeDetails.bin");
+}
