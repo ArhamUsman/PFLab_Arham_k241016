@@ -1,0 +1,44 @@
+/*
+Create a program that defines a structure Student with fields 
+roll_no, name, and another nested structure 
+Marks (fields: maths, science, and english). 
+Use an array of Student to store data for 5 students 
+and calculate the average marks for each student.
+*/
+
+struct Marks{
+	float maths, science, english;
+};
+
+struct Student{
+	char roll_no[10], name[30];
+	struct Marks marks;
+};
+
+float average(const struct Student *s){
+	return (s->marks.english+s->marks.maths+s->marks.science)/3;
+}
+
+#include <stdio.h>
+int main(){
+	struct Student s[5];
+	int i;
+	for (i=0; i<2; i++){
+		printf("Enter data for student %d:\n", i+1);
+		printf("Enter roll no:");
+		scanf("%s", s[i].roll_no);
+		printf("Enter name:");
+		scanf("%s", s[i].name);
+		printf("Enter marks for English:");
+		scanf("%f", &s[i].marks.english);
+		printf("Enter marks for Maths:");
+		scanf("%f", &s[i].marks.maths);
+		printf("Enter marks for Science:");
+		scanf("%f", &s[i].marks.science);	
+		printf("--------------------\n");	
+	}
+	printf("--------------------\n");
+	for (i=0; i<2; i++){
+		printf("Average Marks for Student %d: %0.2f\n", i+1, average(&s[i]));
+	}
+}
