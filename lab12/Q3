@@ -1,0 +1,31 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int max(const int *ptr, int maximum, int index, int size){
+	if (index==size) return maximum;
+	if (maximum<ptr[index]) maximum=ptr[index];
+	return max(ptr, maximum, index+1, size);
+}
+
+int main(){
+	int *ptr, size, i;
+	printf("Enter size of array:");
+	scanf("%d", &size);
+	ptr = (int *)calloc(size, sizeof(int));
+	if (ptr==NULL) exit(-1);
+	for (i=0; i<size; i++){
+		printf("Enter number %d:", i+1);
+		scanf("%d", &ptr[i]);
+	}
+	printf("\nThe largest number is %d\n\n", max(ptr, ptr[0], 0, size));
+	printf("Enter size of array:");
+	scanf("%d", &size);
+	ptr = (int *)realloc(ptr, size*sizeof(int));
+	if (ptr==NULL) exit(-1);
+	for (i=i; i<size; i++){
+		printf("Enter number %d:", i+1);
+		scanf("%d", &ptr[i]);
+	}
+	printf("\nThe largest number is %d\n", max(ptr, ptr[0], 0, size));
+	free(ptr);
+}
