@@ -1,0 +1,29 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+int main(){
+	int size;
+	char *name, *temp=(char *)calloc(8, sizeof(char));	
+	printf("Enter the number of characters in your name (first plus last):");
+	scanf("%d", &size);
+	size+=3;					//to cater for '\0' and '\n' and space between first and last name
+	name = (char*)calloc(size, sizeof(char));
+	printf("Enter your name:");
+	fflush(stdin);
+	fgets(name, size, stdin);	
+	name[size-2]='\0';	
+	printf("Enter your student id:");
+	scanf("%s", temp);
+	temp[7]=' ';
+	//printf("Dynamic Array = '%s'  '%s'\n", temp, name);
+	char* final = (char*) calloc(size+10, sizeof(char));
+	strcat(final, temp);
+	strcat(final, name);
+	name = (char *) realloc (name, sizeof(char)*((size-2)+8));
+	strcpy(name, final);
+	printf("Dynamic Array = '%s'", name);
+	free(name);
+	free(temp);
+	free(final);
+}
